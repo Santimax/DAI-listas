@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, FlatList, StyleSheet, CheckBox } from 'react-native';
 
 const App = () => {
+
   const [task, setTask] = useState('');
   const [tasks, setTasks] = useState([]);
 
@@ -23,6 +24,14 @@ const App = () => {
       )
     );
   };
+  useEffect(() => {
+    const loadedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+    setTasks(loadedTasks);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <View style={styles.container}>
