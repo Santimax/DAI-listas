@@ -34,19 +34,19 @@ const App = () => {
   }, [tasks]);
 
   return (
-    <View style={styles.container}>
+  <View style={{ flex: 1, padding: 12, backgroundColor: '#fff' }}>
       <TextInput
-        style={styles.input}
+        style={{height: 50, borderWidth: 1, borderColor: '#ccc', marginBottom: 7, marginTop: 15, paddingHorizontal: 50,}}
         placeholder="Escribe una tarea"
         value={task}
         onChangeText={(text) => setTask(text)}
       />
       <Button title="Agregar tarea" onPress={handleAddTask} />
       <FlatList
-        style={styles.taskList}
+        style={{marginTop: 7}}
         data={tasks}
         renderItem={({ item }) => (
-          <View style={styles.taskItem}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10, borderWidth: 1, borderColor: '#ccc', marginBottom: 7, borderRadius: 5,}}>
             <CheckBox
               value={item.completed}
               onValueChange={() => handleToggleTask(item.id)}
@@ -64,31 +64,6 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#fff',
-  },
-  input: {
-    height: 40,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    marginBottom: 10,
-    paddingHorizontal: 10,
-  },
-  taskList: {
-    marginTop: 20,
-  },
-  taskItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    marginBottom: 10,
-    borderRadius: 5,
-  },
   taskText: {
     flex: 1,
     marginLeft: 10,
